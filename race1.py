@@ -26,7 +26,7 @@ def draw(): # Pygame Zero draw functions
             b += 1
     if gameStatus == 1:
         #Red Flag
-        screen.blit(rflag, (318, 268))
+        screen.blit('rflag', (318, 268))
     if gameStatus == 2:
         # Chequered flag
         screen.blit('cflag', (318, 268))
@@ -34,7 +34,7 @@ def draw(): # Pygame Zero draw functions
 def update(): # Pygame Zero update function
     global gameStatus , trackCount
     if gameStatus == 0:
-        if keyboard.left: car.x = 2
+        if keyboard.left: car.x -= 2
         if keyboard.right: car.x += 2
         updateTrack()
     if trackCount > 200: gameStatus = 2 # Chequered flag
@@ -54,9 +54,9 @@ def updateTrack(): # Function to update where the track blocks appear
         trackLeft[b].y += SPEED
         trackRight[b].y += SPEED
         b += 1
-    if trackLeft[len(trackLeft-1)].y > 32:
+    if trackLeft[len(trackLeft)-1].y > 32:
         if trackDirection == False: trackPosition += 16
-        if trackDirection == True: trackPosition -+ 16
+        if trackDirection == True: trackPosition -= 16
         if randint(0, 4) == 1: trackDirection = not trackDirection
         if trackPosition > 700-trackWidth: trackDirection = True
         if trackPosition < trackWidth: trackDirection = False
